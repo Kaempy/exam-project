@@ -1,0 +1,12 @@
+.contact-container {
+    min-height: 100vh;
+    background: #423f3f;
+    color: white;
+    padding: 6rem 1rem;
+    display: grid;
+    grid-gap: 2rem;
+    justify-content: space-between;
+    text-align: center;
+    place-content: center;
+  }
+ 

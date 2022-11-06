@@ -1,0 +1,30 @@
+.error-container {
+    min-height: 100vh;
+    background: #2a2a2a;
+    color: papayawhip;
+    padding: 6rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+}
+.btn {
+    background: papayawhip;
+}
+.btn:hover {
+   background: bisque;
+   color:black;
+   border:none;
+   outline: none;
+}
+.wrapper {
+    text-align: center;
+}
+
+.wrapper img {
+    margin: 1.5rem auto;
+    width:45%;
+    border-radius: 50%;
+}
