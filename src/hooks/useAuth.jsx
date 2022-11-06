@@ -33,7 +33,7 @@ const useAuth = () => {
           console.log("signed in successful!", result.user);
           setUser({ ...result.user });
           setIsAuth(true);
-        //   navigate("/users");
+          navigate("/users");
           console.log(isAuth);
         }
       } catch (err) {
