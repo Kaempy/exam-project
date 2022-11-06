@@ -40,7 +40,7 @@ const Home = () => {
           ) : (
             <button className={styles["signin-btn"]} onClick={handleSignIn}>
               <img
-                src="../../../public/assets/icons/google-icon.svg"
+                src="/assets/icons/google-icon.svg"
                 alt="sign in with google"
                 title="sign in with google"
               />
