@@ -110,6 +110,7 @@ a {
 }
 .div {
   margin: 2rem;
+  margin-bottom: 4rem;
 }
 .card h2 {
   text-transform: capitalize;
@@ -147,6 +148,9 @@ a {
   }
   .list-container {
     grid-template-columns: 1fr;
+  }
+  .div {
+    margin-bottom: 0;
   }
 }
 @media screen and (max-width: 425px){
