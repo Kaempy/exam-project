@@ -57,7 +57,7 @@ const Users = () => {
                         </div>
                         <h2>{each.login.username}</h2>
                         <p>
-                          Location:{" "}
+                          Location:
                           {`${each.location.city}, ${each.location.country}`}
                         </p>
                       </li>

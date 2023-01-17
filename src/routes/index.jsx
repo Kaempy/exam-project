@@ -5,8 +5,6 @@ import { ErrorBoundary } from "react-error-boundary";
 const Layout = lazy(() => import("../components/layout/index"));
 
 const Home = lazy(() => import("../pages/home"));
-const About = lazy(() => import("../pages/about"));
-const Contact = lazy(() => import("../pages/contact"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 const Users = lazy(() => import("../pages/users/index"));
 const Details = lazy(() => import("../pages/users/user-details"));
@@ -54,17 +52,6 @@ const Index = () => {
             }
           />
           <Route
-            path="about"
-            element={
-              <ErrorBoundary
-                FallbackComponent={ErrorFallback}
-                onError={errorHandler}
-              >
-                <About />
-              </ErrorBoundary>
-            }
-          />
-          <Route
             path="users"
             element={
               <ErrorBoundary
@@ -87,17 +74,6 @@ const Index = () => {
               }
             />
           </Route>
-          <Route
-            path="contact"
-            element={
-              <ErrorBoundary
-                FallbackComponent={ErrorFallback}
-                onError={errorHandler}
-              >
-                <Contact />
-              </ErrorBoundary>
-            }
-          />
           <Route
             path="bomb"
             element={

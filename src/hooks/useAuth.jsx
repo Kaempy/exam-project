@@ -1,62 +1,66 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  provider,
-  auth,
-  signInWithRedirect,
-  getRedirectResult,
-  onAuthStateChanged,
-  signOut,
-} from "../config";
+import { useState, useEffect } from "react";
+import { auth, provider, signInWithPopup, signOut } from "../config";
 
 const useAuth = () => {
-  const navigate = useNavigate();
-  const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState({});
+  const initialState = {
+    user: null,
+    name: null,
+    email: null,
+    profilePic: null,
+  };
+  const [state, setState] = useState(initialState);
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
+      console.log(result.user);
 
-  const handleSignIn = async () => {
-    console.log("signing in...");
-    await signInWithRedirect(auth, provider);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("username", result.user.displayName);
+      localStorage.setItem("email", result.user.email);
+      localStorage.setItem("profilePic", result.user.photoURL);
+
+      return setState({
+        ...state,
+        user: result.user,
+        name: result.user.displayName,
+        email: result.user.email,
+        profilePic: result.user.photoURL,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleSignOut = async () => {
-    await signOut(auth);
-    setIsAuth(false);
+  const logoutHandler = async () => {
+    try {
+      const result = await signOut(auth);
+      // Sign-out successful.
+      localStorage.clear();
+      setState({
+        ...state,
+        user: null,
+        name: null,
+        email: null,
+        profilePic: null,
+      });
+      console.log(result);
+      alert("signout successful!");
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   useEffect(() => {
-    const getRedirect = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result) {
-          console.log("signed in successful!", result.user);
-          setUser({ ...result.user });
-          setIsAuth(true);
-          navigate("/users");
-          console.log(isAuth);
-        }
-      } catch (err) {
-        return console.log(err.message);
-      }
-    };
-    getRedirect();
-  }, [auth]);
+    return setState({
+      ...state,
+      user: JSON.parse(localStorage.getItem("user")),
+      name: localStorage.getItem("username"),
+      email: localStorage.getItem("email"),
+      profilePic: localStorage.getItem("profilePic"),
+    });
+  }, []);
 
-  useEffect(() => {
-    onAuthStateChanged(
-      auth,
-      (user) => {
-        if (user) {
-          console.log(user);
-          setUser({ ...user });
-          //   navigate("/users");
-        }
-      },
-      (error) => console.log(error),
-      (completed) => console.log(completed)
-    );
-  }, [auth]);
-  return { isAuth, user, handleSignOut, handleSignIn };
+  return { state, signInWithGoogle, logoutHandler };
 };
+
 export default useAuth;

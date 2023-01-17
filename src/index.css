@@ -35,7 +35,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #2a2a2a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -141,6 +141,10 @@ a {
 }
 .pageCount small {
   color: whitesmoke;
+}
+.signin-btn {
+  display: flex;
+  color: antiquewhite;
 }
 @media screen and (max-width: 768px) {
   .container {

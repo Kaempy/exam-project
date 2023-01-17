@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 
 const Home = () => {
-  const { handleSignIn, handleSignOut, isAuth } = useAuth();
+  const { state } = useAuth();
   return (
     <>
       <Helmet>
@@ -15,39 +15,23 @@ const Home = () => {
         <link rel="canonical" href="/" />
       </Helmet>
       <main className={styles["home-container"]}>
-        <div className={styles["img-wrapper"]}>
-          <img
-            src="/assets/images/profile.jpeg"
-            alt="profile"
-            title="Ademary"
-            width={"100%"}
-            height={"100%"}
-            className={styles.img}
-          />
-        </div>
-        <div className={styles["bio-container"]}>
-          <address className={styles.address}>
-            <small>campa.banj@gmail.com</small>
-            <small>+234 706 3700 760</small>
-          </address>
-          <h1>Adebanjo Mary</h1>
-          <p>Front-end developer</p>
-          <span className={styles.line}></span>
-          {isAuth ? (
-            <button className={styles["signin-btn"]} onClick={handleSignOut}>
-              <small>Sign out</small>
-            </button>
-          ) : (
-            <button className={styles["signin-btn"]} onClick={handleSignIn}>
+        {state.user ? (
+          <>
+            <div style={{ textAlign: "center" }}>
+              <h2>{state.name}</h2>
+              <p>{state.email}</p>
+              <br />
               <img
-                src="/assets/icons/google-icon.svg"
-                alt="sign in with google"
-                title="sign in with google"
+                src={state.profilePic}
+                alt="profile pic"
+                title={state.name}
+                style={{ borderRadius: "50%" }}
               />
-              <small>Sign in with google</small>
-            </button>
-          )}
-        </div>
+            </div>
+          </>
+        ) : (
+          <h1>Welcome on Board!</h1>
+        )}
       </main>
     </>
   );

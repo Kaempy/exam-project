@@ -2,13 +2,9 @@
   min-height: 100vh;
   background: rgb(121, 113, 89);
   color: white;
-  padding: 6rem 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  justify-items: center;
+  display: flex;
+  place-items: center;
+  place-content: center;
 }
 .bio-container h2 {
   font-size: 3rem;

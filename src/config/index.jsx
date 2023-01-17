@@ -4,9 +4,7 @@ import {
   GoogleAuthProvider,
   getAuth,
   signOut,
-  signInWithRedirect,
-  getRedirectResult,
-  onAuthStateChanged,
+  signInWithPopup,
 } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,20 +23,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const App = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(App);
-
-// Create an instance of the Google provider object
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-// Create an instance of the Firebase OAuth provider object
-const auth = getAuth(App);
 
-export {
-  provider,
-  auth,
-  signOut,
-  signInWithRedirect,
-  getRedirectResult,
-  onAuthStateChanged,
-};
-export default App;
+export { auth, provider, signOut, signInWithPopup };
